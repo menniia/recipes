@@ -1,6 +1,6 @@
 const initialState = [];
 const favoriteRecipeReducer = (favoriteRecipes = initialState, action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case "favoriteRecipes/addRecipe":
             return [...favoriteRecipes, action.payload]
         case "favoriteRecipes/removeRecipe":

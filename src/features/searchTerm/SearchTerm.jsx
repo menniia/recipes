@@ -1,13 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { setSearchTerm } from "./searchTermSlice";
+import { faMagnifyingGlass, faX } from '@fortawesome/free-solid-svg-icons'
+import { clearSearchTerm, setSearchTerm } from "./searchTermSlice";
 
 const SearchTerm = ({ searchTerm, dispatch }) => {
 
     const onSearchTermChangeHandler = (event) => {
         const userInput = event.target.value;
         dispatch(setSearchTerm(userInput))
+    }
 
+    const onClearSearchHandler = () => {
+        dispatch(clearSearchTerm())
     }
 
 
@@ -19,7 +22,16 @@ const SearchTerm = ({ searchTerm, dispatch }) => {
                 id="search"
                 value={searchTerm}
                 onChange={onSearchTermChangeHandler}
+                placeholder="Search for recipes"
             />
+            {searchTerm.length > 0 && (
+                <button
+                    type="button"
+                    onClick={onClearSearchHandler}
+                >
+                    <FontAwesomeIcon icon={faX} />
+                </button>
+            )}
         </div>
     )
 }
