@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const FavoriteButton = ({ icon, onClickHandler }) => {
+const FavoriteButton = ({ icon, onClickHandler, children }) => {
     return (
-        <button onClick={onClickHandler}>
-            <FontAwesomeIcon icon={icon} />
+        <button className="favorite-button" onClick={onClickHandler}>
+            <FontAwesomeIcon className="heart-icon" icon={icon} />
+            {children}
         </button>
     )
 }

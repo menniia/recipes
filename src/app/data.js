@@ -12,4 +12,5 @@ const allRecipesData = [
     { id: 10, name: 'Pad Thai', img: 'recipes/img/padthai.jpeg' },
 ];
 
+
 export default allRecipesData;

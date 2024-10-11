@@ -1,7 +1,7 @@
 import AllRecipes from "../features/allRecipes/AllRecipes";
 import FavoriteRecipes from "../features/favoriteRecipes/FavoriteRecipes";
 import SearchTerm from "../features/searchTerm/SearchTerm";
-import getFilteredRecipe from "../utils/utils";
+import { getFilteredRecipe } from "../utils/utils";
 
 
 function App({ state, dispatch }) {

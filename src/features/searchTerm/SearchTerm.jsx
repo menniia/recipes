@@ -15,8 +15,8 @@ const SearchTerm = ({ searchTerm, dispatch }) => {
 
 
     return (
-        <div>
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <div className="search-container">
+            <FontAwesomeIcon id="search-icon" icon={faMagnifyingGlass} />
             <input
                 type="text"
                 id="search"
@@ -28,6 +28,7 @@ const SearchTerm = ({ searchTerm, dispatch }) => {
                 <button
                     type="button"
                     onClick={onClearSearchHandler}
+                    id="search-clear-button"
                 >
                     <FontAwesomeIcon icon={faX} />
                 </button>
