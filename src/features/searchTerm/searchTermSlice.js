@@ -24,4 +24,5 @@ const clearSearchTerm = (search) => {
     }
 }
 
+export const selectSearchTerm = state => state.searchTerm
 export { searchTermReducer, setSearchTerm, clearSearchTerm }

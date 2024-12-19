@@ -1,25 +1,42 @@
+import { createSlice } from "@reduxjs/toolkit";
 import allRecipesData from "../../app/data";
+import { selectSearchTerm } from "../searchTerm/searchTermSlice";
+
+const initialState = allRecipesData;
+
+const allRecipesSlice = createSlice({
+    name: "allRecipes",
+    initialState,
+    reducers: {
+        loadData(state) {
+            state.length = 0;
+            state.push(...allRecipesData);
+        },
+        addFavoriteFromOtherSlice(state, action) {
+            state.push(action.payload);
+        },
+        removeFavoriteFromOtherSlice(state, action) {
+            const indexToRemove = state.findIndex(recipe => recipe.id === action.payload.id);
+            if (indexToRemove !== -1) {
+                state.splice(indexToRemove, 1);
+            }
+        },
+    },
+});
 
 
-const initialState = [];
-const allRecipesReducer = (allRecipes = initialState, action) => {
-    switch (action.type) {
-        case "allRecipes/loadData":
-            return action.payload
-        case "favoriteRecipes/addRecipe":
-            return allRecipes.filter(recipe => recipe.id !== action.payload.id)
-        case "favoriteRecipes/removeRecipe":
-            return [...allRecipes, action.payload]
-        default:
-            return allRecipes
-    }
-}
+// Selectors
+export const selectAllRecipes = (state) => state.allRecipes;
 
-const loadData = () => {
-    return {
-        type: "allRecipes/loadData",
-        payload: allRecipesData
-    }
-}
+export const selectFilteredAllRecipes = (state) => {
+    const allRecipes = selectAllRecipes(state);
+    const searchTerm = selectSearchTerm(state);
 
-export { allRecipesReducer, loadData }
+    return allRecipes.filter((recipe) =>
+        recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+};
+
+export const { loadData, addFavoriteFromOtherSlice, removeFavoriteFromOtherSlice } = allRecipesSlice.actions;
+export default allRecipesSlice.reducer
+
